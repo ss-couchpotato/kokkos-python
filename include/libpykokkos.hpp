@@ -145,6 +145,18 @@ enum KokkosViewDataType {
   ViewDataTypesEnd
 };
 
+enum KokkosViewConstDataType {
+  Int16_const,
+  Int32_const,
+  Int64_const,
+  Uint16_const,
+  Uint32_const,
+  Uint64_const,
+  Float_const,
+  Double_const,
+  ViewConstDataTypesEnd
+};
+
 template <size_t DataT>
 struct ViewDataTypeSpecialization;
 
@@ -163,6 +175,26 @@ VIEW_DATA_TYPE(Uint32, uint32_t, "uint32")
 VIEW_DATA_TYPE(Uint64, uint64_t, "uint64")
 VIEW_DATA_TYPE(Float, float, "float")
 VIEW_DATA_TYPE(Double, double, "double")
+
+template <size_t DataT>
+struct ViewConstDataTypeSpecialization;
+
+#define VIEW_CONST_DATA_TYPE(ENUM_ID, DATA_TYPE, LABEL) \
+  template <>                                     \
+  struct ViewConstDataTypeSpecialization<ENUM_ID> {    \
+    using type = DATA_TYPE;                       \
+    static std::string label() { return LABEL; }  \
+  };
+
+VIEW_CONST_DATA_TYPE(Int16_const, int16_t const, "int16_const")
+VIEW_CONST_DATA_TYPE(Int32_const, int32_t const, "int32_const")
+VIEW_CONST_DATA_TYPE(Int64_const, int64_t const, "int64_const")
+VIEW_CONST_DATA_TYPE(Uint16_const, uint16_t const, "uint16_const")
+VIEW_CONST_DATA_TYPE(Uint32_const, uint32_t const, "uint32_const")
+VIEW_CONST_DATA_TYPE(Uint64_const, uint64_t const, "uint64_const")
+VIEW_CONST_DATA_TYPE(Float_const, float const, "float_const")
+VIEW_CONST_DATA_TYPE(Double_const, double const, "double_const")
+
 
 //--------------------------------------------------------------------------------------//
 
@@ -277,6 +309,7 @@ enum KokkosViewSpace {
   HIP,
   Cuda,
   CudaUVM,
+  HostSpaceDevice,
   ViewSpacesEnd
 };
 
@@ -307,6 +340,9 @@ VIEW_SPACE(ROCm, Kokkos::Experimental::ROCmSpace, "ROCmSpace")
 VIEW_SPACE(HIP, Kokkos::Experimental::HIPSpace, "HIPSpace")
 VIEW_SPACE(Cuda, Kokkos::CudaSpace, "CudaSpace")
 VIEW_SPACE(CudaUVM, Kokkos::CudaUVMSpace, "CudaUVMSpace")
+
+typedef Kokkos::Device<Kokkos::OpenMP, Kokkos::HostSpace> HostSpaceDevice_t;
+VIEW_SPACE(HostSpaceDevice, HostSpaceDevice_t, "Device::<Kokkos::OpenMP, Kokkos::HostSpace>")
 
 template <size_t Idx>
 using space_t = typename ViewSpaceSpecialization<Idx>::type;
