@@ -280,23 +280,23 @@ void generate_concrete_layout_view(py::module &_mod) {
 
   Common::generate_view<View_t, Sp, Tp, Mp, DimIdx, DimIdx>(_mod, name, desc);
 
-  using View_t1      = Kokkos::View<Vp, Lp, Sp, void>;
-  auto name1 =
-      construct_name("_", "KokkosView", data_spec_t::label(),
-                     layout_spec_t::label(), space_spec_t::label(), "void", DimIdx + 1);
-  auto desc1 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
-                             demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<void>());
+  // using View_t1      = Kokkos::View<Vp, Lp, Sp, void>;
+  // auto name1 =
+  //     construct_name("_", "KokkosView", data_spec_t::label(),
+  //                    layout_spec_t::label(), space_spec_t::label(), "void", DimIdx + 1);
+  // auto desc1 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
+  //                            demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<void>());
 
-  Common::generate_view<View_t1, Sp, Tp, void, DimIdx, DimIdx>(_mod, name1, desc1);
+  // Common::generate_view<View_t1, Sp, Tp, void, DimIdx, DimIdx>(_mod, name1, desc1);
 
-  using View_t2      = Kokkos::View<Vp, Lp, Sp, Mp>;
-  auto name2 =
-      construct_name("_", "KokkosView", data_spec_t::label(),
-                     layout_spec_t::label(), space_spec_t::label(), "Kokkos::MemoryTraits<0>", DimIdx + 1);
-  auto desc2 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
-                             demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<Mp>());
+  // using View_t2      = Kokkos::View<Vp, Lp, Sp, Mp>;
+  // auto name2 =
+  //     construct_name("_", "KokkosView", data_spec_t::label(),
+  //                    layout_spec_t::label(), space_spec_t::label(), "Kokkos::MemoryTraits<0>", DimIdx + 1);
+  // auto desc2 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
+  //                            demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<Mp>());
 
-  Common::generate_view<View_t2, Sp, Tp, Mp, DimIdx, DimIdx>(_mod, name2, desc2);
+  // Common::generate_view<View_t2, Sp, Tp, Mp, DimIdx, DimIdx>(_mod, name2, desc2);
 
 }
 
@@ -320,23 +320,23 @@ void generate_const_concrete_layout_view(py::module &_mod) {
 
   Common::generate_const_view<View_t, Sp, Tp, Mp, DimIdx, DimIdx>(_mod, name, desc);
 
-  using View_t1      = Kokkos::View<Vp, Lp, Sp, void>;
-  auto name1 =
-      construct_name("_", "KokkosView", data_spec_t::label(),
-                     layout_spec_t::label(), space_spec_t::label(), "void", DimIdx + 1);
-  auto desc1 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
-                             demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<void>());
+  // using View_t1      = Kokkos::View<Vp, Lp, Sp, void>;
+  // auto name1 =
+  //     construct_name("_", "KokkosView", data_spec_t::label(),
+  //                    layout_spec_t::label(), space_spec_t::label(), "void", DimIdx + 1);
+  // auto desc1 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
+  //                            demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<void>());
 
-  Common::generate_const_view<View_t1, Sp, Tp, void, DimIdx, DimIdx>(_mod, name1, desc1);
+  // Common::generate_const_view<View_t1, Sp, Tp, void, DimIdx, DimIdx>(_mod, name1, desc1);
 
-  using View_t2      = Kokkos::View<Vp, Lp, Sp, Mp>;
-  auto name2 =
-      construct_name("_", "KokkosView", data_spec_t::label(),
-                     layout_spec_t::label(), space_spec_t::label(), "Kokkos::MemoryTraits<0>", DimIdx + 1);
-  auto desc2 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
-                             demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<Mp>());
+  // using View_t2      = Kokkos::View<Vp, Lp, Sp, Mp>;
+  // auto name2 =
+  //     construct_name("_", "KokkosView", data_spec_t::label(),
+  //                    layout_spec_t::label(), space_spec_t::label(), "Kokkos::MemoryTraits<0>", DimIdx + 1);
+  // auto desc2 = construct_name("", "Kokkos::View<", demangle<Vp>(), ", ",
+  //                            demangle<Lp>(), ", ", demangle<Sp>(), ", ", demangle<Mp>());
 
-  Common::generate_const_view<View_t2, Sp, Tp, Mp, DimIdx, DimIdx>(_mod, name2, desc2);
+  // Common::generate_const_view<View_t2, Sp, Tp, Mp, DimIdx, DimIdx>(_mod, name2, desc2);
 }
 #endif
 
